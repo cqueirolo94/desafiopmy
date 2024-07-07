@@ -1,0 +1,245 @@
+version: "3.7"
+networks:
+  sender_primary-net:
+    external: true
+services:
+  orderapigateway:
+    image: cqueirolo/orderapigateway:v1.0.2
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - ALUA_URL=http://orderprocessor-alua:8080
+      - BBAR_URL=http://orderprocessor-bbar:8081
+      - BMA_URL=http://orderprocessor-bma:8082
+      - BYMA_URL=http://orderprocessor-byma:8083
+      - CEPU_URL=http://orderprocessor-cepu:8084
+      - COME_URL=http://orderprocessor-come:8085
+      - CRES_URL=http://orderprocessor-cres:8086
+      - EDN_URL=http://orderprocessor-edn:8087
+      - GGAL_URL=http://orderprocessor-ggal:8088
+      - IRSA_URL=http://orderprocessor-irsa:8089
+      - LOMA_URL=http://orderprocessor-loma:8090
+      - MIRG_URL=http://orderprocessor-mirg:8091
+      - PAMP_URL=http://orderprocessor-pamp:8092
+      - SUPV_URL=http://orderprocessor-supv:8093
+      - TECO2_URL=http://orderprocessor-teco2:8094
+      - TGNO4_URL=http://orderprocessor-tgno4:8095
+      - TGSU2_URL=http://orderprocessor-tgsu2:8096
+      - TRAN_URL=http://orderprocessor-tran:8097
+      - TXAR_URL=http://orderprocessor-txar:8098
+      - VALO_URL=http://orderprocessor-valo:8099
+      - YPFD_URL=http://orderprocessor-ypdf:8100
+      - HTTP_PORT=9001
+    ports:
+      - "9001:9001"
+
+  orderprocessor-alua:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=ALUA
+      - HTTP_PORT=8080
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-bbar:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=BBAR 
+      - HTTP_PORT=8081
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-bma:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=BMA
+      - HTTP_PORT=8082 
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-byma:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=BYMA 
+      - HTTP_PORT=8083
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-cepu:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=CEPU 
+      - HTTP_PORT=8084
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-come:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=COME 
+      - HTTP_PORT=8085
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-cres:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=CRES 
+      - HTTP_PORT=8086
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-edn:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=EDN 
+      - HTTP_PORT=8087
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-ggal:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=GGAL 
+      - HTTP_PORT=8088
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-irsa:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=IRSA 
+      - HTTP_PORT=8089
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-loma:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=LOMA 
+      - HTTP_PORT=8090
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-mirg:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=MIRG 
+      - HTTP_PORT=8091
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-pamp:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=PAMP 
+      - HTTP_PORT=8092
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-supv:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=SUPV 
+      - HTTP_PORT=8093
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-teco2:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=TECO2 
+      - HTTP_PORT=8094
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-tgno4:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=TGNO4 
+      - HTTP_PORT=8095
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-tgsu2:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=TGSU2 
+      - HTTP_PORT=8096
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-tran:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=TRAN 
+      - HTTP_PORT=8097
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-txar:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=TXAR 
+      - HTTP_PORT=8098
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-valo:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=VALO 
+      - HTTP_PORT=8099
+      - NATS_URL=http://pmynats:4222
+
+  orderprocessor-ypfd:
+    image: cqueirolo/orderprocessor:v1.0.0
+    restart: unless-stopped
+    networks:
+      - sender_primary-net
+    environment:
+      - SUBJECT=YPFD 
+      - HTTP_PORT=8100
+      - NATS_URL=http://pmynats:4222

@@ -1,0 +1,28 @@
+version: "3.7"
+networks:
+  primary-net:
+    driver: bridge
+services:
+  pmynats:
+    image: nats:2-alpine
+    hostname: "pmynats"
+    networks:
+      - primary-net
+    ports:
+      - 4222:4222
+      - 8222:8222
+      
+  pmyordersender:
+    image: lsalmeron/ordersender:0.2.0
+    container_name: pmyordersender
+    restart: unless-stopped 
+    networks:
+      - primary-net
+    env_file:
+      - ${ENV_FILE}
+    environment:
+      - PMY_ORDERSENDER_NATS_URL=pmynats
+    depends_on:
+      - pmynats 
+
+
